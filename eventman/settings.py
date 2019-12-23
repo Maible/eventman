@@ -38,6 +38,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eventman.wsgi.application'
 
+AUTH_USER_MODEL = 'user.User'
+
 PAGINATION_LIMIT = 25
 LOGIN_URL = "/login/"
 LOGOUT_REDIRECT_URL = "/"

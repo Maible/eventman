@@ -1,8 +1,8 @@
 from eventman.base import INSTALLED_APPS, MIDDLEWARE  # NOQA
 
 SECRET_KEY = "..."
-DEBUG = False
-DEBUG_TOOLBAR = False
+DEBUG = True
+DEBUG_TOOLBAR = True
 
 TIME_ZONE = "Europe/Istanbul"
 
