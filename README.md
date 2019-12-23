@@ -1,0 +1,2 @@
+# eventman
+Event Manager application
