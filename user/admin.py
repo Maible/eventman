@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as AbstractUserAdmin
 from django.utils.translation import ugettext_lazy as _
 
 from user.forms import UserCreationForm
-from user.models import User
+from user.models import User, Contact
 
 
 @admin.register(User)
@@ -32,3 +32,11 @@ class UserAdmin(AbstractUserAdmin):
     )
     readonly_fields = ('date_joined', 'updated_at', 'last_login')
     search_fields = ('username', 'email', 'first_name', 'last_name',)
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name', 'email', 'has_telegram', 'has_whatsapp', 'updated_at')
+    list_filter = ('has_telegram', 'has_whatsapp')
+    search_fields = ('name', 'email', 'phone')
+    autocomplete_fields = ('user',)
