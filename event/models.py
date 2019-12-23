@@ -50,6 +50,14 @@ class Event(models.Model):
         return total
 
     @property
+    def start_time(self):
+        return self.intervals.order_by('starts_at').first()
+
+    @property
+    def end_time(self):
+        return self.intervals.order_by('ends_at').first()
+
+    @property
     def invitations_count(self) -> int:
         return self.invitations.count()
 

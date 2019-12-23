@@ -1,0 +1,86 @@
+<!doctype html>
+{% load static i18n %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% block meta_description %}Maible Event Manager{% endblock %}">
+    <meta name="author" content="Emin Mastizada, Nurdogan Karaman">
+    <title>{% block title %}{% endblock %} | EventMan</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/fontawesome.all.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/extra.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="{% static 'icon/icon256.png' %}" sizes="256x256">
+<link rel="icon" href="{% static 'icon/icon32.png' %}" sizes="32x32" type="image/png">
+<link rel="icon" href="{% static 'icon/icon16.png' %}" sizes="16x16" type="image/png">
+<link rel="mask-icon" href="{% static 'icon/icon.svg' %}" color="#563d7c">
+<link rel="icon" href="{% static 'icon/icon.ico' %}">
+<meta name="theme-color" content="#121213">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">EventMan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="{% trans "Toggle navigation" %}">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item{% if current_view == 'events' %} active{% endif %}">
+        {% if request.user.is_staff %}
+        <a class="nav-link" href="{% url 'staff_events_list' %}">{% trans "Events" %}</a>
+        {% else %}
+        <a class="nav-link" href="#">{% trans "My Events" %}</a>
+        {% endif %}
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+{#    <form class="form-inline my-2 my-lg-0">#}
+{#      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">#}
+{#      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>#}
+{#    </form>#}
+  </div>
+</nav>
+
+<main role="main" class="container">
+  {% block content %}{% endblock %}
+</main><!-- /.container -->
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

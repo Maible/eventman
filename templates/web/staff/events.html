@@ -1,0 +1,33 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Events" %}{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-sm card-table">
+                    <thead>
+                        <th>{% trans "Event" %}</th>
+                        <th>{% trans "Venue" %}</th>
+                        <th>{% trans "Starts" %}</th>
+                        <th>{% trans "Ends" %}</th>
+                        <th>{% trans "Participants" %}</th>
+                    </thead>
+                    <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td><a href="{% url 'staff_event_invitations' event_id=event.pk %}">{{ event }}</a></td>
+                            <td>{{ event.venue }}</td>
+                            <td>{{ event.start_time.starts_at }}</td>
+                            <td>{{ event.end_time.ends_at }}</td>
+                            <td>{{ event.total_attending }} / {{ event.capacity }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

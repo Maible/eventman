@@ -1,0 +1,110 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% block title %}{{ event }}{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% blocktrans %}Waiting for response:{% endblocktrans %}</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-sm card-table">
+                    <thead>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Email(s)" %}</th>
+                        <th>{% trans "Phone Number(s)" %}</th>
+                        <th>{% trans "Telegram" %}</th>
+                        <th>{% trans "Whatsapp" %}</th>
+                    </thead>
+                    <tbody>
+                    {% for invitation in waiting %}
+                        <tr>
+                            <td>{{ invitation.user }}</td>
+                            <td>
+                                {% for email in invitation.user.email_list %}{{ email }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>
+                                {% for phone in invitation.user.phone_list %}{{ phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>{% if invitation.user.has_telegram %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                            <td>{% if invitation.user.has_whatsapp %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% blocktrans %}Accepted:{% endblocktrans %}</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-sm card-table">
+                    <thead>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Email(s)" %}</th>
+                        <th>{% trans "Phone Number(s)" %}</th>
+                        <th>{% trans "Telegram" %}</th>
+                        <th>{% trans "Whatsapp" %}</th>
+                    </thead>
+                    <tbody>
+                    {% for invitation in accepted %}
+                        <tr>
+                            <td>{{ invitation.user }}</td>
+                            <td>
+                                {% for email in invitation.user.email_list %}{{ email }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>
+                                {% for phone in invitation.user.phone_list %}{{ phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>{% if invitation.user.has_telegram %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                            <td>{% if invitation.user.has_whatsapp %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% blocktrans %}Declined:{% endblocktrans %}</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-sm card-table">
+                    <thead>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Email(s)" %}</th>
+                        <th>{% trans "Phone Number(s)" %}</th>
+                        <th>{% trans "Telegram" %}</th>
+                        <th>{% trans "Whatsapp" %}</th>
+                    </thead>
+                    <tbody>
+                    {% for invitation in declined %}
+                        <tr>
+                            <td>{{ invitation.user }}</td>
+                            <td>
+                                {% for email in invitation.user.email_list %}{{ email }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>
+                                {% for phone in invitation.user.phone_list %}{{ phone }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </td>
+                            <td>{% if invitation.user.has_telegram %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                            <td>{% if invitation.user.has_whatsapp %}<i class="fa fa-check-circle color-green"></i>{% else %}<i class="fa fa-times-circle color-red"></i>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

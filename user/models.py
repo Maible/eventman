@@ -30,8 +30,21 @@ class User(AbstractUser):
     def created_at(self):
         return self.date_joined
 
-    def phone_list(self):
+    @property
+    def has_telegram(self) -> bool:
+        return self.contacts.filter(has_telegram=True).exists()
+
+    @property
+    def has_whatsapp(self) -> bool:
+        return self.contacts.filter(has_whatsapp=True).exists()
+
+    @property
+    def phone_list(self) -> list:
         return self.contacts.filter(phone__isnull=False).values_list('phone', flat=True)
+
+    @property
+    def email_list(self) -> list:
+        return self.contacts.filter(email__isnull=False).values_list('email', flat=True)
 
     class Meta:
         verbose_name = _("User")
