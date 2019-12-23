@@ -30,6 +30,9 @@ class User(AbstractUser):
     def created_at(self):
         return self.date_joined
 
+    def phone_list(self):
+        return self.contacts.filter(phone__isnull=False).values_list('phone', flat=True)
+
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
@@ -37,7 +40,7 @@ class User(AbstractUser):
 
 
 class Contact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contacts')
     name = models.CharField(_("Name"), max_length=255)
     email = models.EmailField(_("Email"), null=True, blank=True)
     phone = models.CharField(_("Phone number"), max_length=20, null=True, blank=True)
