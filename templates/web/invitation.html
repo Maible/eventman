@@ -1,0 +1,18 @@
+{% extends "web/base.html" %}
+{% block title %}{{ invitation.event }}{% endblock %}
+{% block content %}
+<form action="" method="POST">
+{% csrf_token %}
+    <select name="accept_type">
+        <option value="accepted">Accept</option>
+        <option value="rejected">Decline</option>
+        <option value="partial">Partially (please, select the slot)</option>
+    </select>
+    <select name="time_slot_id">
+        {% for interval in invitation.event.intervals.all %}
+            <option value="{{ interval.pk }}">{{ interval.starts_at }} - {{ interval.ends_at }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

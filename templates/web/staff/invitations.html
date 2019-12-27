@@ -47,6 +47,7 @@
                 <table class="table table-sm card-table">
                     <thead>
                         <th>{% trans "Name" %}</th>
+                        <th>{% trans "Attendance" %}</th>
                         <th>{% trans "Email(s)" %}</th>
                         <th>{% trans "Phone Number(s)" %}</th>
                         <th>{% trans "Telegram" %}</th>
@@ -56,6 +57,13 @@
                     {% for invitation in accepted %}
                         <tr>
                             <td>{{ invitation.user }}</td>
+                            <td>
+                                {% if invitation.attendance == 1 %}
+                                    All intervals
+                                {% else %}
+                                    {{ invitation.interval.starts_at|date:"j.n.Y H:i" }} - {{ invitation.interval.ends_at|date:"j.n.Y H:i" }}
+                                {% endif %}
+                            </td>
                             <td>
                                 {% for email in invitation.user.email_list %}{{ email }}{% if not forloop.last %}, {% endif %}{% endfor %}
                             </td>
